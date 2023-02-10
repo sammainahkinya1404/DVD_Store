@@ -1,0 +1,60 @@
+Class DVD:
+    String name
+    String stars
+    String producer
+    String director
+    String production_company
+    Integer copies
+    Boolean checked_out
+
+Class Customer:
+    String first_name
+    String last_name
+    Integer account_number
+    List rented_dvds
+
+Class DVDList:
+    List dvds
+
+Class CustomerList:
+    List customers
+
+Class DVDStore:
+    DVDList dvd_list
+    CustomerList customer_list
+
+    Function rent_dvd(DVD dvd, Customer customer):
+        If dvd.checked_out = False:
+            dvd.checked_out = True
+            customer.rented_dvds.append(dvd)
+        Else:
+            Print "DVD already checked out."
+
+Function return_dvd(DVD dvd, Customer customer):
+    dvd.checked_out = False
+    Remove dvd from customer.rented_dvds
+
+Function show_dvd_details(DVD dvd):
+    Print "Name: ", dvd.name
+    Print "Stars: ", dvd.stars
+    Print "Producer: ", dvd.producer
+    Print "Director: ", dvd.director
+    Print "Production Company: ", dvd.production_company
+    Print "Copies in Store: ", dvd.copies
+
+Function print_dvds_in_store(DVDList dvd_list):
+    For each dvd in dvd_list.dvds:
+        Print dvd.name
+
+Function check_dvd_in_store(DVD dvd, DVDList dvd_list):
+    If dvd in dvd_list.dvds:
+        Return True
+    Else:
+        Return False
+
+Function print_customers_with_rented_dvds(CustomerList customer_list):
+    For each customer in customer_list.customers:
+        Print customer.first_name, customer.last_name
+        For each rented_dvd in customer.rented_dvds:
+            Print rented_dvd.name
+
